@@ -1,4 +1,4 @@
-module WATgroup/algorithm
+module github.com/WATgroup/algorithm
 
 go 1.19
 
