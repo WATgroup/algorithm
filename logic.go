@@ -47,14 +47,14 @@ func Map[T, U any](slice []T, fn func(T) U) []U {
 
 ////////////////////
 
-func Reduce[T comparable, U any] (slice []T, initial U, reducer func(U,T) U) U {
+func Reduce[T comparable, U any](slice []T, initial U, reducer func(U, T) U) U {
 	if nil == slice || nil == reducer {
 		return initial
 	}
 
-	var accum U = initial
+	accum := initial
 	for _, v := range slice {
-		accum = reducer(accum,v)
+		accum = reducer(accum, v)
 	}
 	return accum
 }

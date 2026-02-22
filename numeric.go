@@ -1,5 +1,6 @@
-package algorithm
+//go:build go1.18 || go1.19 || go1.20
 
+package algorithm
 
 // numeric algorithms
 // Supports all types which satisfy the "Number" type constraint:
@@ -21,7 +22,7 @@ func Min[T Number](slice []T) T {
 		return T(0)
 	}
 
-	var min T = slice[0]
+	min := slice[0]
 	for _, v := range slice {
 		if v < min {
 			min = v
@@ -37,7 +38,7 @@ func Max[T Number](slice []T) T {
 		return T(0)
 	}
 
-	var max T = slice[0]
+	max := slice[0]
 	for _, v := range slice {
 		if v > max {
 			max = v

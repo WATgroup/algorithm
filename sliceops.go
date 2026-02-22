@@ -38,40 +38,41 @@ func Intersect[T comparable](s1, s2 []T) []T {
 
 // Select / Reject -> filter
 // Supports all comparable types as slice values.
-func Select[T, U comparable](slice []T, fn func(T) (bool,U)) []U {
+func Select[T, U comparable](slice []T, fn func(T) (bool, U)) []U {
 	result := make([]U, 0, len(slice))
 	for _, v := range slice {
-		if ok,x := fn(v); ok {
+		if ok, x := fn(v); ok {
 			result = append(result, x)
 		}
 	}
 	return result
 }
 
-func Reject[T, U comparable](slice []T, fn func(T) (bool,U)) []U {
+func Reject[T, U comparable](slice []T, fn func(T) (bool, U)) []U {
 	result := make([]U, 0, len(slice))
 	for _, v := range slice {
-		if ok,x := fn(v); !ok {
+		if ok, x := fn(v); !ok {
 			result = append(result, x)
 		}
 	}
 	return result
 }
-
 
 ////////////////////////////////////////////////////////////
 
 // Removes nil values from an array.
 /* Example:
-	var arr = []interface{}{1, 2, 3, nil, 4, 5}
-	result := Compact(arr)  // [1, 2, 3, 4, 5]
+var arr = []interface{}{1, 2, 3, nil, 4, 5}
+result := Compact(arr)  // [1, 2, 3, 4, 5]
 */
-func Coalesce/*[T any]*/(input []any) []any {
-	if nil == input { return input; }
+func Coalesce /*[T any]*/ (input []any) []any {
+	if nil == input {
+		return input
+	}
 
 	result := make([]any, 0, len(input))
 	for _, v := range input {
-		if nil != v {					// use reflection
+		if nil != v { // XXX: use reflection, probably
 			result = append(result, v)
 		}
 	}
@@ -82,12 +83,12 @@ func Coalesce/*[T any]*/(input []any) []any {
 
 func Unique[T comparable](slice []T) []T {
 
-	if /*nil == slice ||*/ 1 > len(slice) {		// len(nil) -> 0
+	if /*nil == slice ||*/ 1 > len(slice) { // len(nil) -> 0
 		return slice
 	}
 
 	// auxiliary map
-	vals := make(map[T]bool,len(slice))
+	vals := make(map[T]bool, len(slice))
 
 	// First pass: build unicity map
 	for _, u := range slice {
@@ -96,10 +97,10 @@ func Unique[T comparable](slice []T) []T {
 
 	// Second pass: build result slice
 	result := make([]T, 0, len(slice))
-	for v,_ := range vals {
-		result=append(result,v)
+	for v := range vals {
+		result = append(result, v)
 	}
-	vals = nil		// attempt to free memory faster
+	vals = nil // attempt to free memory faster
 
 	return result
 }

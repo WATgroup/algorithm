@@ -1,6 +1,6 @@
 package algorithm
 
-// MergeDict: merges two dictionaries;
+// MergeDict merges two dictionaries;
 // destination values will get overwritten by those on src
 func MergeDict[T any](dst map[string]T, src map[string]T) {
 

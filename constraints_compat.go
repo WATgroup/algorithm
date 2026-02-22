@@ -3,6 +3,7 @@
 package algorithm
 
 import (
+	//revive:disable-next-line:dot-imports
 	. "golang.org/x/exp/constraints"
 )
 
@@ -30,6 +31,7 @@ import (
 // 	Integer | Float | ~string
 // }
 
+// The Int constraint (similar to Number) includes signed and unsigned ints
 type Int interface {
 	Signed | Unsigned
 }

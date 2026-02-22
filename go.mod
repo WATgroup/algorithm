@@ -1,5 +1,5 @@
 module github.com/WATgroup/algorithm
 
-go 1.19
+go 1.25
 
 require golang.org/x/exp v0.0.0-20221230162634-c8adb6e14cba
